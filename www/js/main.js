@@ -131,7 +131,7 @@ function onTapTable(table){
 
 var showLog = function(time){
   getData();
-  var dialog = document.getElementById('dialog1');
+  var dialog = document.querySelector('dialog1');
   
   if (dialog) {
     dialog.show();
@@ -156,14 +156,33 @@ var saveData = function(){
   //ons.notification.alert('保存しました');
   saveKeyCount++;
 }
-var getData = function(){
+var getData = function(mode){
   var dataStr ;
+
+  //alert("getda");
   var data = "";
-  for(var i=0; i<saveKeyCount;i++){
+  var i = 0;
+  do{
     dataStr = localStorage.getItem(saveKey[i]);
+    if(dataStr != null){
+      if(mode == 1){
+        var checkstr = JSON.parse(dataStr);
+        if(checkstr.indexOf(document.getElementById("choose-DotW").value) != -1){
+            data += JSON.parse(dataStr);
+            data += "<br>";
+        }
+
+      }else{
     data += JSON.parse(dataStr);
     data += "<br>";
-  }
+    }
+    i++
+    }
+    if(dataStr == null){
+      break;
+    }
+  }while(true)
+
   var copyObj=document.getElementById("loglist");
   copyObj.innerHTML = data;
   copyObj=document.getElementById("loglist2");

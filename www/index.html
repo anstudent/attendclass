@@ -21,7 +21,7 @@
 
 	<ons-template id="tab1.html">
 		<ons-page id="first-page">
-      <table style="table-layout: fixed;" border="1" width="115%" height="80%"  >
+      <table style="table-layout: fixed;" border="1" width="115%" height="80%" onclick="getElementById('logshowbtn').disabled = false;getElementById('logshowbtn2').disabled = false;" >
         <tr>
 <th width="5%"></th><th width="13%">月</th ><th width="13%">火</th><th width="13%">水</th><th width="13%">木</th><th width="13%">金</th><th width="13%">土</th><th width="13%">日</th>
 </tr>
@@ -48,16 +48,16 @@
 </tr>
 </table>
 		
-	<ons-button id = "logshowbtn" modifier="cta" class="buttonsmall" onclick="getData();disabled = true;">GET</ons-button>
-
+	<ons-button id = "logshowbtn" modifier="cta" class="buttonsmall" onclick="getData(0);disabled = true;">GET</ons-button>
+  <ons-button id = "logshowbtn2" modifier="cta" class="buttonsmall" onclick="getData(1);disabled = true;">GetDay</ons-button>
 			<ons-select id="choose-DotW" onchange="editSelects(event)">
-				<option>月曜</option>
-				<option>火曜</option>
-				<option>水曜</option>
-				<option>木曜</option>
-				<option>金曜</option>
-				<option>土曜</option>
-				<option>日曜</option>
+				<option>月</option>
+				<option>火</option>
+				<option>水</option>
+				<option>木</option>
+				<option>金</option>
+				<option>土</option>
+				<option>日</option>
 
 
 			</ons-select>
@@ -65,7 +65,7 @@
                         </ons-switch>
       <span>出席</span>
 
-<ons-switch id = "edit" disabled>
+<ons-switch id = "edit" >
 </ons-switch>
 <p id = "loglist">aaaa</p>
 		</ons-page>
@@ -85,8 +85,7 @@
 		<ons-dialog id="dialog1">
 			<div align="center">
 				<p class="textbig" id="forSaveWindow">ER </p>
-				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">出席</ons-button>
-        <ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">欠席</ons-button>
+				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">OK</ons-button>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1')">Cancel</ons-button>
 			</div>
 		</ons-dialog>
