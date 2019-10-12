@@ -253,3 +253,8 @@ function loadFocus(){
   alert("aaaa");
   document.getElementById("changearea").focus();
 }
+
+function testLoad(){
+  var str = localStorage.getItem("log1");
+  alert(str);
+}
