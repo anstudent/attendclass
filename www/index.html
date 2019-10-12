@@ -63,7 +63,7 @@
   <ons-button id = "logshowbtn" modifier="cta" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日別</ons-button>
   
 
-			<ons-select id="choose-DotW" >
+			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
 				<option>月</option>
 				<option>火</option>
 				<option>水</option>
@@ -89,6 +89,8 @@
 		<ons-page id="second-page">
       <ons-button id = "logshowbtn3" modifier="cta" class="buttonsmall" onclick="loadLog(1,2);disabled = true;getElementById('logshowbtn2').disabled = false;">曜日別</ons-button>
       <ons-button class = "clickevent" id = "logshowbtn2" modifier="cta" class="buttonsmall" onclick="loadLog(0,2);disabled = true;getElementById('logshowbtn3').disabled = false;">全一覧</ons-button>
+
+      
 
 			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn2').disabled = false;getElementById('logshowbtn3').disabled = false;">
 				<option>月</option>
@@ -129,7 +131,7 @@
 			<div class="center" id="toolbar-title"></div>
 		</ons-toolbar>
 		<ons-tabbar position="bottom">
-			<ons-tab label="Tab 1" page="tab1.html" active>
+			<ons-tab label="Tab 1" page="tab1.html" onclick="getElementById('logshowbtn2').disabled = false;getElementById('logshowbtn3').disabled = false;" active>
 			</ons-tab>
 			<ons-tab label="Tab 2" page="tab2.html">
 			</ons-tab>
