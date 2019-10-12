@@ -1,0 +1,28 @@
+/**/
+
+.buttonPop{
+  font-size: 20px;
+    padding: 5px;
+    margin-right:15px; 
+    margin-left: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.buttonTime{
+   margin-right:5px; 
+}
+.textbig{
+  font-size: 18px;
+}
+.buttonsmall{
+ 
+  padding: 5px 3px;
+}
+
+  
+
+td{
+  font-size: 8px;
+  text-align: center;
+  word-wrap: break-word;
+}
