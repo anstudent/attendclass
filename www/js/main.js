@@ -1,12 +1,19 @@
 	var DOTW = "forSave";
-  var saveKey = [];
+ 
   var saveKeyForClass =  new Array(85);
   var saveKeyCount = 0;
   var selectedTable;
   
-  
+  var logObj = [];
+
   ons.ready(function() {
       console.log("Onsen UI is ready!");
+      if(localStorage.getItem("saveKeyCount") != null && JSON.parse(localStorage.getItem("saveKeyCount")) != 0){
+      saveKeyCount = JSON.parse(localStorage.getItem("saveKeyCount"));
+      saveKeyCount++;
+      //alert(saveKeyCount);
+      }
+      loadName();
     });
 
     document.addEventListener('show', function(event) {
@@ -20,6 +27,7 @@
         //alert("change");
        // document.getElementById("logshowbtn2").click();
        loadLog(0,2);
+       //nLoadLog();
       }
     });
 
@@ -156,12 +164,60 @@ var hideDialog = function(id) {
 }
 //ローカルストレージに記録
 var saveData = function(){
-
-  saveKey.push("log" + String(saveKeyCount));
-  localStorage.setItem(saveKey[saveKeyCount], JSON.stringify(DOTW));
+//alert(saveKeyCount);
+ //var saveKey = [];
+  //saveKey.push("log" + String(saveKeyCount));
+  localStorage.setItem("log" + String(saveKeyCount), JSON.stringify(DOTW));
   //ons.notification.alert('保存しました');
+  localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
   saveKeyCount++;
 }
+function getLogList() {
+    var list = localStorage.getItem("logObj");
+    if (list == null) {
+        return new Array();
+    } else {
+        return JSON.parse(list);
+    }
+}
+
+function nSaveLog(){
+    //logObj.push(DOTW);
+     var list = localStorage.getItem("logObj");
+    if (list == null) {
+        var strage = [DOTW];
+    } else {
+        var strage = JSON.parse(list);
+        strage.push(DOTW);
+    }
+    
+    localStorage.setItem("logObj",JSON.parse(strage));
+}
+
+function nLoadLog(){
+ var strage = JSON.parse(localStorage.getItem("logObj"));
+ console.log(strage);
+ if(strage != null){
+  //logObj.push(strage); 
+ writeLogList(strage);
+ }
+  
+}
+
+function writeLogList(strage){
+  var logstr;
+  var htmlId;
+  for(var i=0,len = strage.length ; i<len; i++){
+    logstr += logObj[i];
+    logstr += "<br>";
+  }
+  if(logstr == "" || logstr == null){
+    logstr = "記録がありません";
+  }
+  htmlId = document.getElementById("loglist2");
+  htmlId.innerHTML = logstr;
+}
+
 var loadLog = function(mode,page){
   var dataStr ;
 
@@ -169,7 +225,7 @@ var loadLog = function(mode,page){
   var data = "";
   var i = 0;
   do{
-    dataStr = localStorage.getItem(saveKey[i]);
+    dataStr = localStorage.getItem("log"+String(i));
     if(dataStr != null){
       if(mode == 1){
         var checkstr = JSON.parse(dataStr);
@@ -187,8 +243,8 @@ var loadLog = function(mode,page){
     }
     i++
     }
-    
-    if(dataStr == null){
+   else if(dataStr == null){
+     // alert(i);
       break;
     }
   }while(true)
@@ -217,20 +273,20 @@ function saveName(){
   name.innerHTML = (nameclass);
 //ストレージ保存
 //alert(selectedTable);
-var tablenum = Number(selectedTable);
-  saveKeyForClass[tablenum] = "class" + selectedTable;
+//var tablenum = Number(selectedTable);
+  //saveKeyForClass[tablenum] = "class" + selectedTable;
   //saveKey.push("class" + String(saveKeyCount));
   //alert(saveKeyForClass[tablenum]);
-  localStorage.setItem(saveKeyForClass[tablenum], JSON.stringify(nameclass));
+  localStorage.setItem( "class" + selectedTable, JSON.stringify(nameclass));
 }
 function loadName(){
   var dataStr;
   for(counter = 11;counter < 79;counter++ ){
     //alert("209");
-    dataStr = localStorage.getItem(saveKeyForClass[counter]);
+    dataStr = localStorage.getItem("class" + String(counter));
     //alert("211");
     if(dataStr != null  && JSON.parse(dataStr) != ""){
-      alert(dataStr);
+     // alert(dataStr);
       document.getElementById(String(counter)).innerHTML = JSON.parse(dataStr);
     }
   }
@@ -238,9 +294,8 @@ function loadName(){
 function loadNameforInput(table){
   var tablenumI = Number(table);
   var dataStr;
-  dataStr = localStorage.getItem(saveKeyForClass[tablenumI]);
+  dataStr = localStorage.getItem("class"+table);
   if(dataStr != null && JSON.parse(dataStr) != ""){
-   
    dataStr = JSON.parse(dataStr);
   }
   else{
@@ -255,6 +310,9 @@ function loadFocus(){
 }
 
 function testLoad(){
-  var str = localStorage.getItem("log1");
-  alert(str);
+  localStorage.clear();
+  saveKeyCount = 0;
+  localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
+  loadName();
+  loadLog(1,1);
 }
