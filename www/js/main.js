@@ -14,9 +14,9 @@
       var titleElement = document.querySelector('#toolbar-title');
 
       if (page.matches('#first-page')) {
-        titleElement.innerHTML = 'My app - Page 1';
+        titleElement.innerHTML = '時間割　曜日別出欠記録';
       } else if (page.matches('#second-page')) {
-        titleElement.innerHTML = '出欠記録';
+        titleElement.innerHTML = '出欠記録全一覧';
         //alert("change");
        // document.getElementById("logshowbtn2").click();
        loadLog(0,2);

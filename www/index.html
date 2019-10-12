@@ -79,7 +79,7 @@
 
  <span>出欠</span><ons-switch id = "edit" >
 </ons-switch><span>授業名</span>
-<p id = "loglist">aaaa</p>
+<p id = "loglist">ここに曜日別出欠記録が表示されます</p>
 		</ons-page>
 	</ons-template>
 
@@ -87,21 +87,7 @@
 
 	<ons-template id="tab2.html">
 		<ons-page id="second-page">
-      <ons-button id = "logshowbtn3" modifier="cta" class="buttonsmall" onclick="loadLog(1,2);disabled = true;getElementById('logshowbtn2').disabled = false;">曜日別</ons-button>
-      <ons-button class = "clickevent" id = "logshowbtn2" modifier="cta" class="buttonsmall" onclick="loadLog(0,2);disabled = true;getElementById('logshowbtn3').disabled = false;">全一覧</ons-button>
 
-      
-
-			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn2').disabled = false;getElementById('logshowbtn3').disabled = false;">
-				<option>月</option>
-				<option>火</option>
-				<option>水</option>
-				<option>木</option>
-				<option>金</option>
-				<option>土</option>
-				<option>日</option>
-
-			</ons-select>
       <p id = "loglist2"></p>
 		</ons-page>
 	</ons-template>
@@ -131,7 +117,7 @@
 			<div class="center" id="toolbar-title"></div>
 		</ons-toolbar>
 		<ons-tabbar position="bottom">
-			<ons-tab label="Tab 1" page="tab1.html" onclick="getElementById('logshowbtn2').disabled = false;getElementById('logshowbtn3').disabled = false;" active>
+			<ons-tab label="Tab 1" page="tab1.html"  active>
 			</ons-tab>
 			<ons-tab label="Tab 2" page="tab2.html">
 			</ons-tab>
