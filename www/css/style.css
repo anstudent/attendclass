@@ -19,7 +19,9 @@
   padding: 5px 3px;
 }
 
-  
+  .clickevent{
+    cursor: pointer;
+  }
 
 td{
   font-size: 8px;

@@ -1,5 +1,6 @@
 	var DOTW = "forSave";
   var saveKey = [];
+  var saveKeyForClass =  new Array(85);
   var saveKeyCount = 0;
   var selectedTable;
   
@@ -15,7 +16,10 @@
       if (page.matches('#first-page')) {
         titleElement.innerHTML = 'My app - Page 1';
       } else if (page.matches('#second-page')) {
-        titleElement.innerHTML = 'My app - Page 2';
+        titleElement.innerHTML = '出欠記録';
+        //alert("change");
+       // document.getElementById("logshowbtn2").click();
+       loadLog(0,2);
       }
     });
 
@@ -45,8 +49,8 @@ function getNow() {
 }
 var makeData = function(time){
   
-  var dayoftheweek = document.getElementById("choose-DotW")
-  DOTW = dayoftheweek.value
+  var dayoftheweek = document.getElementById("choose-DotW");
+  DOTW = dayoftheweek.value;
   var copyObj=document.getElementById("forSaveWindow");
   var atendswitch = document.getElementById("abswitch");
 
@@ -80,11 +84,11 @@ var logWill = function(time){
 }
 
 function logAppear(table){
-
+//alert(table);
  var tableNum = Number(table);
  var youbi = new Array("月","火","水","木","金","土","日");
- var time = tableNum%10;
- var youbinum = Math.round(tableNum/10)-1;
+ var time = tableNum % 10;
+ var youbinum = Math.floor(tableNum/10)-1;
   var dayoftheweek = youbi[youbinum];
   DOTW = dayoftheweek;
   var copyObj=document.getElementById("forSaveWindow");
@@ -114,7 +118,9 @@ function logAppear(table){
 
 function changeName(table){
    var dialog = document.getElementById('namedialog');
+   loadNameforInput(table);
    dialog.show();
+   
   selectedTable = table;
 }
 
@@ -130,7 +136,7 @@ function onTapTable(table){
 }
 
 var showLog = function(time){
-  getData();
+  loadLog();
   var dialog = document.querySelector('dialog1');
   
   if (dialog) {
@@ -151,12 +157,12 @@ var hideDialog = function(id) {
 //ローカルストレージに記録
 var saveData = function(){
 
-  saveKey.push(String(saveKeyCount))
+  saveKey.push("log" + String(saveKeyCount));
   localStorage.setItem(saveKey[saveKeyCount], JSON.stringify(DOTW));
   //ons.notification.alert('保存しました');
   saveKeyCount++;
 }
-var getData = function(mode){
+var loadLog = function(mode,page){
   var dataStr ;
 
   //alert("getda");
@@ -167,30 +173,83 @@ var getData = function(mode){
     if(dataStr != null){
       if(mode == 1){
         var checkstr = JSON.parse(dataStr);
-        if(checkstr.indexOf(document.getElementById("choose-DotW").value) != -1){
+        if(checkstr.indexOf(document.getElementById("choose-DotW").value) == 3){
             data += JSON.parse(dataStr);
             data += "<br>";
         }
 
-      }else{
+      }else if(mode == 0){
     data += JSON.parse(dataStr);
     data += "<br>";
     }
+    else{
+      alert("BAd loadlog mode");
+    }
     i++
     }
+    
     if(dataStr == null){
       break;
     }
   }while(true)
-
-  var copyObj=document.getElementById("loglist");
-  copyObj.innerHTML = data;
-  copyObj=document.getElementById("loglist2");
+  if(data == "" || data == null){
+    data = "記録がありません";
+  }
+  var copyObj;
+  if(page == 2){
+    copyObj=document.getElementById("loglist2");
+    if(mode == 1){
+      document.querySelector('#toolbar-title').innerHTML = "出欠記録曜日別"
+    }
+    else if(mode == 0){
+      document.querySelector('#toolbar-title').innerHTML = "出欠記録全一覧"
+    }
+  }
+  else if(page == 1){
+    copyObj=document.getElementById("loglist");
+  }
   copyObj.innerHTML = data;
 }
 
 function saveName(){
   var nameclass = document.getElementById("changearea").value;
-var name = document.getElementById(selectedTable);
+  var name = document.getElementById(selectedTable);
   name.innerHTML = (nameclass);
+//ストレージ保存
+//alert(selectedTable);
+var tablenum = Number(selectedTable);
+  saveKeyForClass[tablenum] = "class" + selectedTable;
+  //saveKey.push("class" + String(saveKeyCount));
+  //alert(saveKeyForClass[tablenum]);
+  localStorage.setItem(saveKeyForClass[tablenum], JSON.stringify(nameclass));
+}
+function loadName(){
+  var dataStr;
+  for(counter = 11;counter < 79;counter++ ){
+    //alert("209");
+    dataStr = localStorage.getItem(saveKeyForClass[counter]);
+    //alert("211");
+    if(dataStr != null  && JSON.parse(dataStr) != ""){
+      alert(dataStr);
+      document.getElementById(String(counter)).innerHTML = JSON.parse(dataStr);
+    }
+  }
+}
+function loadNameforInput(table){
+  var tablenumI = Number(table);
+  var dataStr;
+  dataStr = localStorage.getItem(saveKeyForClass[tablenumI]);
+  if(dataStr != null && JSON.parse(dataStr) != ""){
+   
+   dataStr = JSON.parse(dataStr);
+  }
+  else{
+    dataStr = "";
+  }
+  document.getElementById("changearea").value = dataStr;
+}
+
+function loadFocus(){
+  alert("aaaa");
+  document.getElementById("changearea").focus();
 }
