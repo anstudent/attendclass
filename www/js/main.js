@@ -77,20 +77,55 @@ var logWill = function(time){
         dialog.show();
       });
   }
-};
+}
+
+function logAppear(table){
+
+ var tableNum = Number(table);
+ var youbi = new Array("月","火","水","木","金","土","日");
+ var time = tableNum%10;
+ var youbinum = Math.round(tableNum/10)-1;
+  var dayoftheweek = youbi[youbinum];
+  DOTW = dayoftheweek;
+  var copyObj=document.getElementById("forSaveWindow");
+  var atendswitch = document.getElementById("abswitch");
+
+  if(atendswitch.checked){
+    DOTW = "出席 " + DOTW  + time + "限 " + getNow();
+  }
+  else if(atendswitch.checked == false){
+    DOTW = "欠席 " + DOTW  + time + "限 " + getNow();
+  }
+  else{
+    DOTW = DOTW  + time + "限 " + getNow();
+  }
+  copyObj.innerHTML = DOTW;
+
+  var dialog = document.getElementById('dialog1');
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.createElement('dialog.html', { append: true })
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+}
 
 function changeName(table){
    var dialog = document.getElementById('namedialog');
    dialog.show();
   selectedTable = table;
 }
+
 function onTapTable(table){
   var editable = document.getElementById("edit");
   if(editable.checked){
   changeName(table);
   }
   else{
-    ons.notification.alert("編集モードではありません");
+    logAppear(table);
+    //ons.notification.alert("編集モードではありません");
   }
 }
 
