@@ -23,7 +23,7 @@
 		<ons-page id="first-page">
 
 
-      <table style="table-layout: fixed;" border="1" width="115%" height="80%" onclick="getElementById('logshowbtn').disabled = false;" >
+      <table style="table-layout: fixed;" border="1" width="115%" height="80%" onclick="getElementById('logshowbtn').disabled = false;" onload="loadNmae()" >
 
 <tr>
 <th width="5%"></th><th width="13%">月</th ><th width="13%">火</th><th width="13%">水</th><th width="13%">木</th><th width="13%">金</th><th width="13%">土</th><th width="13%">日</th>
@@ -60,8 +60,7 @@
 </table>
 		
 	<br>
-  <ons-button id = "logshowbtn" modifier="cta" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日別</ons-button>
-   <ons-button   onclick="testLoad();">CLEAR</ons-button>
+   
 
 			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
 				<option>月</option>
@@ -74,11 +73,14 @@
 
 
 			</ons-select>
+
+      <ons-button id = "logshowbtn" modifier="cta" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
       <span>欠席</span><ons-switch id = "abswitch" checked></ons-switch>
       <span>出席</span>
 
  <span>出欠</span><ons-switch id = "edit" >
 </ons-switch><span>授業名</span>
+
 <p id = "loglist">ここに曜日別出欠記録が表示されます</p>
 		</ons-page>
 	</ons-template>
@@ -87,8 +89,10 @@
 
 	<ons-template id="tab2.html">
 		<ons-page id="second-page">
-
-      <p id = "loglist2"></p>
+      <ons-button class = "lefttop" onclick = "clearDialog();">初期化</ons-button>
+      <ons-button class = "lefttop" onclick = "scrollBottom();">↓下へ</ons-button>
+      <p id = "loglist2" class = "lefttop"></p> 
+      <ons-button class = "toright" onclick = "scrolltoTop();">↑上へ</ons-button>
 		</ons-page>
 	</ons-template>
 
@@ -97,15 +101,32 @@
   <ons-page>
 		<ons-dialog id="dialog1">
 			<div align="center">
-				<p class="textbig" id="forSaveWindow">ER </p>
+				<p  id="forSaveWindow">ERROR</p>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">OK</ons-button>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1')">Cancel</ons-button>
 			</div>
+	</ons-dialog>
+
+	<ons-dialog id="cleared">
+			<div align="center">
+				<p>内部記録を初期化しました。</p>
+        <p>表示に反映するにはアプリを再起動してください。</p>
+				<ons-button class=" buttonPop" onclick="hideDialog('cleared')">OK</ons-button>
+			</div>
+	</ons-dialog>
+
+    <ons-dialog id="cleardialog">
+			<div align="center">
+				<p >時間割と出欠記録を消しますか？</p>
+				<ons-button class=" buttonPop" onclick="hideDialog('cleardialog');clearAll()">OK</ons-button>
+				<ons-button class=" buttonPop" onclick="hideDialog('cleardialog');">Cancel</ons-button>
+			</div>
 		</ons-dialog>
+
 
     <ons-dialog id="namedialog">
 			<div align="center">
-				<p class="textbig" id="forSaveWindow">授業名入力</p>
+				<p >授業名入力</p>
         <textarea id = "changearea" rows="4" maxlength="40"  ></textarea>
         <br>
 				<ons-button class=" buttonPop" onclick="hideDialog('namedialog');saveName()">保存</ons-button>

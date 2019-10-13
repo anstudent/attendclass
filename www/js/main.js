@@ -10,11 +10,15 @@
       console.log("Onsen UI is ready!");
       if(localStorage.getItem("saveKeyCount") != null && JSON.parse(localStorage.getItem("saveKeyCount")) != 0){
       saveKeyCount = JSON.parse(localStorage.getItem("saveKeyCount"));
-      saveKeyCount++;
+      //saveKeyCount++;
       //alert(saveKeyCount);
       }
-      loadName();
+      //loadName();
     });
+    
+  window.onload = function(){
+    loadName();
+  }
 
     document.addEventListener('show', function(event) {
       var page = event.target;
@@ -27,6 +31,7 @@
         //alert("change");
        // document.getElementById("logshowbtn2").click();
        loadLog(0,2);
+       scrollBottom();
        //nLoadLog();
       }
     });
@@ -167,10 +172,11 @@ var saveData = function(){
 //alert(saveKeyCount);
  //var saveKey = [];
   //saveKey.push("log" + String(saveKeyCount));
-  localStorage.setItem("log" + String(saveKeyCount), JSON.stringify(DOTW));
   //ons.notification.alert('保存しました');
-  localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
   saveKeyCount++;
+  localStorage.setItem("log" + String(saveKeyCount), JSON.stringify(DOTW));
+  localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
+  
 }
 function getLogList() {
     var list = localStorage.getItem("logObj");
@@ -181,18 +187,7 @@ function getLogList() {
     }
 }
 
-function nSaveLog(){
-    //logObj.push(DOTW);
-     var list = localStorage.getItem("logObj");
-    if (list == null) {
-        var strage = [DOTW];
-    } else {
-        var strage = JSON.parse(list);
-        strage.push(DOTW);
-    }
-    
-    localStorage.setItem("logObj",JSON.parse(strage));
-}
+
 
 function nLoadLog(){
  var strage = JSON.parse(localStorage.getItem("logObj"));
@@ -223,7 +218,7 @@ var loadLog = function(mode,page){
 
   //alert("getda");
   var data = "";
-  var i = 0;
+  var i = 1;
   do{
     dataStr = localStorage.getItem("log"+String(i));
     if(dataStr != null){
@@ -313,6 +308,36 @@ function testLoad(){
   localStorage.clear();
   saveKeyCount = 0;
   localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
-  loadName();
+
+  //loadName();
   loadLog(1,1);
+}
+function clearDialog(){
+  var dialog = document.getElementById('cleardialog');
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.createElement('dialog.html', { append: true })
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+}
+
+function clearAll(){
+  localStorage.clear();
+  saveKeyCount = 0;
+  localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
+  //ons-alert-dia("初期化しました。反映するにはアプリ再起動の必要があります。");
+  document.getElementById("cleared").show();
+}
+
+function scrollBottom(){
+  var page2 = document.getElementById("second-page");
+ page2.scrollTop = page2.scrollHeight;
+}
+
+function scrolltoTop(){
+  var page2 = document.getElementById("second-page");
+  page2.scrollTop = 0;
 }
