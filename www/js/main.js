@@ -1,4 +1,4 @@
-	var DOTW = "forSave";
+	var DOTW = "ErrorforSave";
  
   var saveKeyForClass =  new Array(85);
   var saveKeyCount = 0;
@@ -48,7 +48,7 @@ function getNow() {
 	var day = now.getDate();
 	var hour = now.getHours();
 	var min = now.getMinutes();
-	var sec = now.getSeconds();
+	//var sec = now.getSeconds();
   var you = now.getDay(); //曜日(0～6=日～土)
 
 	//曜日の選択肢
@@ -56,19 +56,19 @@ function getNow() {
 	//出力用
 	//var s = year + "年" + mon + "月" + day + "日 (" + youbi[you] + ")";
 	//出力用
-	var s =  mon + "/" + day + "(" + youbi[you] + ")" + hour + "時" + min + "分記録"; 
+	var s =  mon + "/" + day + "(" + youbi[you] + ")" + hour + ":" + min + "記録"; 
   //forSave = s;
 	return s;
 }
-var makeData = function(time){
+/*var makeData = function(time){
   
   var dayoftheweek = document.getElementById("choose-DotW");
   DOTW = dayoftheweek.value;
   var copyObj=document.getElementById("forSaveWindow");
   var atendswitch = document.getElementById("abswitch");
-
+  var classdate = document.getElementById("classdate").value;
   if(atendswitch.checked){
-    DOTW = "出席 " + DOTW  + time + "限 " + getNow();
+    DOTW = "出席 " + DOTW  + time + "限 " + getNow() ;
   }
   else if(atendswitch.checked == false){
     DOTW = "欠席 " + DOTW  + time + "限 " + getNow();
@@ -78,10 +78,10 @@ var makeData = function(time){
   }
   //forSave = DOTW;
   copyObj.innerHTML = DOTW;
-}
+}*/
 
 //実際の表示動作
-var logWill = function(time){
+/*var logWill = function(time){
   
   makeData(time);
   var dialog = document.getElementById('dialog1');
@@ -94,7 +94,7 @@ var logWill = function(time){
         dialog.show();
       });
   }
-}
+}*/
 
 function logAppear(table){
 //alert(table);
@@ -107,14 +107,14 @@ function logAppear(table){
   var copyObj=document.getElementById("forSaveWindow");
   var atendswitch = document.getElementById("abswitch");
 
-  if(atendswitch.checked){
-    DOTW = "出席 " + DOTW  + time + "限 " + getNow();
+  if(atendswitch.checked == true){
+    DOTW = "出席 " + DOTW  + time + "限";
   }
   else if(atendswitch.checked == false){
-    DOTW = "欠席 " + DOTW  + time + "限 " + getNow();
+    DOTW = "欠席 " + DOTW  + time + "限";
   }
   else{
-    DOTW = DOTW  + time + "限 " + getNow();
+    DOTW = DOTW  + time + "限 " ;
   }
   copyObj.innerHTML = DOTW;
 
@@ -169,10 +169,12 @@ var hideDialog = function(id) {
 }
 //ローカルストレージに記録
 var saveData = function(){
-//alert(saveKeyCount);
- //var saveKey = [];
-  //saveKey.push("log" + String(saveKeyCount));
-  //ons.notification.alert('保存しました');
+  var classMonth = document.getElementById("choose-month").value;
+  var classDate = document.getElementById("choose-date").value;
+  
+  var str ="(" + String(classMonth) + "/" + String(classDate) + ") ";
+  DOTW = DOTW + str + getNow();
+  //alert(JSON.stringify(DOTW));
   saveKeyCount++;
   localStorage.setItem("log" + String(saveKeyCount), JSON.stringify(DOTW));
   localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));

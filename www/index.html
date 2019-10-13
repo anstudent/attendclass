@@ -59,7 +59,6 @@
 
 </table>
 		
-	<br>
    
 
 			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
@@ -74,12 +73,12 @@
 
 			</ons-select>
 
-      <ons-button id = "logshowbtn" modifier="cta" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
+      <ons-button id = "logshowbtn" modifier="outline" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
       <span>欠席</span><ons-switch id = "abswitch" checked></ons-switch>
       <span>出席</span>
 
  <span>出欠</span><ons-switch id = "edit" >
-</ons-switch><span>授業名</span>
+</ons-switch><span>編集</span>
 
 <p id = "loglist">ここに曜日別出欠記録が表示されます</p>
 		</ons-page>
@@ -101,6 +100,61 @@
   <ons-page>
 		<ons-dialog id="dialog1">
 			<div align="center">
+
+        	<ons-select id="choose-month">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+	      <option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				
+			</ons-select>
+
+      <a>月</a>
+       
+<ons-select id="choose-date">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+	      <option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+				<option>14</option>
+				<option>15</option>
+				<option>16</option>
+				<option>17</option>
+	      <option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+				<option>22</option>
+				<option>23</option>
+				<option>24</option>
+				<option>25</option>
+				<option>26</option>
+				<option>27</option>
+	      <option>28</option>
+				<option>29</option>
+				<option>30</option>
+        <option>31</option>
+				
+			</ons-select>
+      
+<a>日</a>
 				<p  id="forSaveWindow">ERROR</p>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">OK</ons-button>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1')">Cancel</ons-button>
