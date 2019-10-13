@@ -96,6 +96,17 @@ function getNow() {
   }
 }*/
 
+function dayMinus(){
+var dayIndex =  document.getElementById("choose-date");
+
+if(dayIndex.selectedIndex<1){
+  dayIndex.selectedIndex = 30;
+}else{
+  dayIndex.selectedIndex--;
+}
+
+}
+
 function logAppear(table){
 //alert(table);
  var tableNum = Number(table);
@@ -107,6 +118,13 @@ function logAppear(table){
   var copyObj=document.getElementById("forSaveWindow");
   var atendswitch = document.getElementById("abswitch");
 
+  //var year = now.getFullYear();
+  var now = new Date();
+	var mon = now.getMonth(); 
+	var day = now.getDate()-1;
+  //var you = now.getDay(); //曜日(0～6=日～土)
+document.getElementById("choose-month").selectedIndex = mon;
+document.getElementById("choose-date").selectedIndex = day;
   if(atendswitch.checked == true){
     DOTW = "出席 " + DOTW  + time + "限";
   }

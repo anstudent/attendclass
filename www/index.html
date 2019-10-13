@@ -61,7 +61,7 @@
 		
    
 
-			<ons-select id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
+			<ons-select class = "left" id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
 				<option>月</option>
 				<option>火</option>
 				<option>水</option>
@@ -80,7 +80,7 @@
  <span>出欠</span><ons-switch id = "edit" >
 </ons-switch><span>編集</span>
 
-<p id = "loglist">ここに曜日別出欠記録が表示されます</p>
+<p id = "loglist"class = "left">ここに曜日別出欠記録が表示されます</p>
 		</ons-page>
 	</ons-template>
 
@@ -155,6 +155,7 @@
 			</ons-select>
       
 <a>日</a>
+<ons-button class=" buttonPop" id="dayminus", onclick="dayMinus();">-1日</ons-button>
 				<p  id="forSaveWindow">ERROR</p>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">OK</ons-button>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1')">Cancel</ons-button>
@@ -164,7 +165,7 @@
 	<ons-dialog id="cleared">
 			<div align="center">
 				<p>内部記録を初期化しました。</p>
-        <p>表示に反映するにはアプリを再起動してください。</p>
+        <p>アプリを再起動してください。</p>
 				<ons-button class=" buttonPop" onclick="hideDialog('cleared')">OK</ons-button>
 			</div>
 	</ons-dialog>

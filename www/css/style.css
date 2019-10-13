@@ -2,10 +2,11 @@
 
 .buttonPop{
   font-size: 17px;
-    padding: 5px;
+    padding: 3px 8px;
     margin-right:15px; 
     margin-left: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     text-align: center;
 }
 .buttonTime{
@@ -31,7 +32,9 @@ span{
   .clickevent{
     cursor: pointer;
   }
-
+.left{
+  margin-left: 5px;
+}
 .lefttop{
   margin: 10px 0px 10px 10px;
 }
