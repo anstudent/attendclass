@@ -6,28 +6,42 @@
   
   var logObj = [];
 
-  ons.ready(function() {
+
+
+ons.ready(function() {
+         
+      });
+	  /*ons.ready(function() {
       console.log("Onsen UI is ready!");
-      if(localStorage.getItem("saveKeyCount") != null && JSON.parse(localStorage.getItem("saveKeyCount")) != 0){
-      saveKeyCount = JSON.parse(localStorage.getItem("saveKeyCount"));
-      //saveKeyCount++;
+     
+      //saveKeyCount++; 
+      
+          //var nendOriginalElem = angular.element(document.querySelector('#nend_wrapper'));
+          //var nendInjectElem1 = angular.element(document.querySelector('#new_nend_wrapper'));
+          //nendInjectElem1.replaceWith(nendOriginalElem.clone());
+    
       //alert(saveKeyCount);
-      }
+      
       //loadName();
-    });
+    });*/
     
   window.onload = function(){
     loadName();
+     if(localStorage.getItem("saveKeyCount") != null && JSON.parse(localStorage.getItem("saveKeyCount")) != 0){
+      saveKeyCount = JSON.parse(localStorage.getItem("saveKeyCount"));
+     }
   }
+
+
 
     document.addEventListener('show', function(event) {
       var page = event.target;
       var titleElement = document.querySelector('#toolbar-title');
 
       if (page.matches('#first-page')) {
-        titleElement.innerHTML = '時間割　曜日別出欠記録';
+        titleElement.innerHTML = '';
       } else if (page.matches('#second-page')) {
-        titleElement.innerHTML = '出欠記録全一覧';
+        titleElement.innerHTML = '';
         //alert("change");
        // document.getElementById("logshowbtn2").click();
        loadLog(0,2);
@@ -196,7 +210,8 @@ var saveData = function(){
   saveKeyCount++;
   localStorage.setItem("log" + String(saveKeyCount), JSON.stringify(DOTW));
   localStorage.setItem("saveKeyCount",JSON.stringify(saveKeyCount));
-  
+  //ons.notification.toast('保存しました', {timeout: 200});
+  ons.notification.toast('保存しました', {timeout: 800 ,animation: 'fall'});
 }
 function getLogList() {
     var list = localStorage.getItem("logObj");
@@ -270,10 +285,10 @@ var loadLog = function(mode,page){
   if(page == 2){
     copyObj=document.getElementById("loglist2");
     if(mode == 1){
-      document.querySelector('#toolbar-title').innerHTML = "出欠記録曜日別"
+      document.querySelector('#toolbar-title').innerHTML = ""
     }
     else if(mode == 0){
-      document.querySelector('#toolbar-title').innerHTML = "出欠記録全一覧"
+      document.querySelector('#toolbar-title').innerHTML = ""
     }
   }
   else if(page == 1){

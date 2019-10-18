@@ -12,14 +12,18 @@
 	<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
 	<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
 	<link rel="stylesheet" href="css/style.css">
+ 
 
-	<script src="js/main.js"></script>
+
+
+	
 
 </head>
 
 <body>
 
-	<ons-template id="tab1.html">
+	
+  <ons-template id="tab1.html">
 		<ons-page id="first-page">
 
 
@@ -73,7 +77,7 @@
 
 			</ons-select>
 
-      <ons-button id = "logshowbtn" modifier="outline" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
+      <ons-button id = "logshowbtn" modifier="material" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
       <span>欠席</span><ons-switch id = "abswitch" checked></ons-switch>
       <span>出席</span>
 
@@ -92,6 +96,8 @@
       <ons-button class = "lefttop" onclick = "scrollBottom();">↓下へ</ons-button>
       <p id = "loglist2" class = "lefttop"></p> 
       <ons-button class = "toright" onclick = "scrolltoTop();">↑上へ</ons-button>
+
+      
 		</ons-page>
 	</ons-template>
 
@@ -155,7 +161,7 @@
 			</ons-select>
       
 <a>日</a>
-<ons-button class=" buttonPop" id="dayminus", onclick="dayMinus();">-1日</ons-button>
+<ons-button class=" buttonPop" id="dayminus", onclick="dayMinus();">1日前</ons-button>
 				<p  id="forSaveWindow">ERROR</p>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1');saveData()">OK</ons-button>
 				<ons-button class=" buttonPop" onclick="hideDialog('dialog1')">Cancel</ons-button>
@@ -192,13 +198,17 @@
 		<ons-toolbar>
 			<div class="center" id="toolbar-title"></div>
 		</ons-toolbar>
-		<ons-tabbar position="bottom">
-			<ons-tab label="Tab 1" page="tab1.html"  active>
+		<ons-tabbar position="bottom" class= "aaa">
+			<ons-tab label="時間割" page="tab1.html"  active>
 			</ons-tab>
-			<ons-tab label="Tab 2" page="tab2.html">
+			<ons-tab label="全出欠一覧" page="tab2.html">
 			</ons-tab>
 		</ons-tabbar>
+    
 	</ons-page>
+
+<script src="js/main.js"></script>
 </body>
+
 
 </html>
