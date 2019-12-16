@@ -20,19 +20,15 @@
 }
 
 .buttonsmall{
-  margin-top: 8px;
+  
   padding: 5px 6px;
 }
 a{
   margin-top: 10px;
   padding-top: 10px;
 }
-ons-switch{
-  margin-top: 10px;
-}
-span{
-  margin:0px 5px 0px 2px;  
-}
+
+
   .clickevent{
     cursor: pointer;
   }
@@ -40,8 +36,19 @@ span{
   margin-left: 5px;
 }
 .lefttop{
-  margin: 10px 0px 10px 10px;
+  margin: 20px 0px 10px 10px;
 }
+.abright{
+  position: absolute;
+  right: 30px;
+  top:20px;
+}
+.abrightbo{
+   position: absolute;
+  right: 30px;
+  bottom:10px;
+}
+
 .toright{
  margin:10px 0px 10px 94px;
 }
@@ -50,9 +57,18 @@ td{
   text-align: center;
   word-wrap: break-word;
 }
-.div_nend{
-position: absolute;
- 
-  width: 100%;
-z-index: 10;
-            }
+
+.flex-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.tabhead{
+  height: 55px;
+}
+
+.toppad{
+  padding-top:10px; 
+}

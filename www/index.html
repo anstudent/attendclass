@@ -27,7 +27,7 @@
 		<ons-page id="first-page">
 
 
-      <table style="table-layout: fixed;" border="1" width="115%" height="80%" onclick="getElementById('logshowbtn').disabled = false;" onload="loadNmae()" >
+      <table style="table-layout: fixed;" border="1" width="115%" height="80%" onclick="getElementById('logshowbtn').disabled = false;" class="toppad">
 
 <tr>
 <th width="5%"></th><th width="13%">月</th ><th width="13%">火</th><th width="13%">水</th><th width="13%">木</th><th width="13%">金</th><th width="13%">土</th><th width="13%">日</th>
@@ -63,7 +63,7 @@
 
 </table>
 		
-   
+   <div class="flex-box">
 
 			<ons-select class = "left" id="choose-DotW" onclick="getElementById('logshowbtn').disabled = false;">
 				<option>月</option>
@@ -78,11 +78,13 @@
 			</ons-select>
 
       <ons-button id = "logshowbtn" modifier="material" class="buttonsmall"  onclick="loadLog(1,1);disabled = true;">曜日</ons-button>
-      <span>欠席</span><ons-switch id = "abswitch" checked></ons-switch>
-      <span>出席</span>
+      <div>欠席</div><ons-switch id = "abswitch" checked></ons-switch>
+      <div>出席</div>
 
  <span>出欠</span><ons-switch id = "edit" >
 </ons-switch><span>編集</span>
+
+   </div>
 
 <p id = "loglist"class = "left">ここに曜日別出欠記録が表示されます</p>
 		</ons-page>
@@ -93,9 +95,9 @@
 	<ons-template id="tab2.html">
 		<ons-page id="second-page">
       <ons-button class = "lefttop" onclick = "clearDialog();">初期化</ons-button>
-      <ons-button class = "lefttop" onclick = "scrollBottom();">↓下へ</ons-button>
+      <ons-button class = "abright" onclick = "scrollBottom();">↓下へ</ons-button>
       <p id = "loglist2" class = "lefttop"></p> 
-      <ons-button class = "toright" onclick = "scrolltoTop();">↑上へ</ons-button>
+      <ons-button class = "abrightbo" onclick = "scrolltoTop();">↑上へ</ons-button>
 
       
 		</ons-page>
@@ -195,8 +197,8 @@
 			</div>
 		</ons-dialog>
 
-		<ons-toolbar>
-			<div class="center" id="toolbar-title"></div>
+		<ons-toolbar class="tabhead">
+			<div  id="toolbar-title"></div>
 		</ons-toolbar>
 		<ons-tabbar position="bottom" class= "aaa">
 			<ons-tab label="時間割" page="tab1.html"  active>
@@ -207,6 +209,7 @@
     
 	</ons-page>
 
+ 
 <script src="js/main.js"></script>
 </body>
 
